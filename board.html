@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading">Board</h1>
+				<p class="intro-text">
+					Write down what you want to say
+				</p>
+				<a href="#board" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Page Sample Section -->
+<section id="board">
+	<div class="container content-section text-left">
+		<div class="row">
+			<h2 class="text-center">BOARD</h2>
+			<div class="container">
+			<div class="pull-right"><h4 id="totalCount">0</h4></div>
+			<table class="table table-hover table table-striped text-center" id="list">
+
+			</table>
+			<a class="btn btn-default pull-right" href="./boardWrite.html">글쓰기</a><div class="text-center">
+			<div class="pagination-wrapper clearfix">
+				<ul class="pagination" id="pages">
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	</div>
+</div>
+</section>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script>
+	async function getDataSet(page) {
+		const dataSet = await axios({
+			method : "get", // http method
+			url    : url + `/board/list?page=${page}`,
+			headers: {}, // packet header
+			data   : {}, // packet body
+		});
+
+		const tables = dataSet.data.result;
+		let pageNum = page == null ? 1 : page
+		document.getElementById('totalCount').innerHTML =`전체 게시글 수: ${dataSet.data.total[0][0].total}`
+		paging(dataSet.data.total[0][0].total , pageNum);
+		buildTable(tables)
+
+		function buildTable(tables) {
+			let table = document.getElementById('list')
+				table.innerHTML = `
+				<colgroup>
+					<col width="5%">
+					<col width="60%">
+					<col width="10%">
+					<col width="15%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<th class="text-center">번호</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">작성자</th>
+					<th class="text-center">등록일</th>
+					<th class="text-center">조회수</th>
+				</tr>
+`
+
+			for (let i in tables) {
+				{
+				let row = `<tr onclick="goView('${tables[i].boardIdx}','${tables[i].secret}')" style="cursor: pointer;">
+				<td>${Number(i) + 1} </td>
+				<td>${tables[i].title}${tables[i].secret == 'Y' ?'🔒' :''}</td>
+				<td>${tables[i].writer}</td>
+				<td>${tables[i].insertDt.substr(0, 10)}</td>
+				<td>${tables[i].count}</td>
+				</tr>`
+					table.innerHTML += row
+				}
+			}
+		}
+
+	}
+
+
+	function goView(idx,secret){
+		window.location.href = `./boardView.html?boardId=${idx}&secret=${secret}`;
+	}
+
+	function paging(totalData, currentPage) {
+		const dataPerPage = 10;
+		let pageCount = Math.ceil(totalData / 10) > 5 ? 5 : Math.ceil(totalData / 10);
+		console.log(pageCount+"test");
+		let totalPage;
+		if(totalData > dataPerPage){
+			//pageCount = 5 ;
+		    totalPage = Math.ceil(totalData / dataPerPage); //총 페이지 수
+		}else{
+			//pageCount = 1 ;
+			totalPage = 1 ;
+		}
+		const pageGroup = Math.ceil(currentPage / pageCount); //페이지 그룹
+
+
+		let last = pageGroup * pageCount; // 마지막 페이지
+		if (last > totalPage)
+			last = totalPage;
+		let first = last - (pageCount - 1); // 처음 페이지번호
+		const next = last + 1;
+		const prev = first - 1;
+
+		if (totalPage < 1) {
+			first = last;
+		}
+		const pages = $("#pages");
+		pages.empty();
+		if (first > 5) {
+			pages.append(`<li class="pagination-item" style="cursor: pointer;"><a onclick="goPage('${prev}')" style="margin-left: 2px">prev</a></li>`);
+		}
+		for (let j = first; j <= last; j++) {
+			if(currentPage = (j)){
+				pages.append(`<li class="pagination-item" style="cursor: pointer;"><a class="active" onclick="goPage('${j}')" style="margin-left: 2px">${j}</a></li>`);
+			}
+			else if (j > 0) {
+				pages.append(`<li class="pagination-item" style="cursor: pointer;"><a class="active" onclick="goPage('${j}')" style="margin-left: 2px">${j}</a></li>`);
+			}
+
+		}
+		if (next > 5 && next < totalPage) {
+			pages.append(`<li class="pagination-item" style="cursor: pointer;"><a class="active" onclick="goPage('${next}')" style="margin-left: 2px">next</a></li>`);
+		}
+	}
+
+	function goPage(num){
+		getDataSet(num);
+	}
+
+	getDataSet(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<style>
+	.progress-bar {
+    background-color: #09B864;
+    border-radius: 4px;
+    box-shadow: inset 0 0.5em 0.5em rgba(0,0,0,0.05);
+    height: 5px;
+    margin: 2rem 0 2rem 0;
+    overflow: hidden;
+    position: relative;
+    transform: translateZ(0);
+    width: 100%;
+  }
+
+  .progress-bar__bar {
+    background-color: #ececec;
+    box-shadow: inset 0 0.5em 0.5em rgba(94, 49, 49, 0.05);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .progress-bar__bar.active {
+    transition: all 3000ms ease-out;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%)
+  }
+
+</style>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading">CONTACT</h1>
+				<p class="intro-text">
+					저에게 메일을 남겨주세요 !
+				</p>
+				<a href="#contact" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Contact Section -->
+<section id="contact">
+<div class="container content-section">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<div class="done">
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					Your message has been sent. Thank you!
+				</div>
+			</div>
+			<form method="post" class="gform"  id="contactform">
+				<div class="progress-bar" style="display: none;">
+					<div class="progress-bar__bar"></div>
+				</div>
+				<div class="form">
+					<input type="text" name="name" id="name" placeholder="Your Name *">
+					<input type="text" name="email" id="email" placeholder="Your E-mail Address *">
+					<textarea name="comment" id="comment" rows="7" placeholder="Type your Message *"></textarea>
+					<input type="button" id="submit" value="Send">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</section>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script src="./js/mail.js"></script>
+</body>
+</html>

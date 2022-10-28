@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading" id="ponyoTitle"></h1>
+				<p class="intro-text">
+					Write down what you want to ponyo say
+				</p>
+				<a href="#ponyo" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Page Sample Section -->
+<section id="ponyo">
+	<div class="container content-section text-left">
+		<div class="row">
+		<h2 class="text-center">포뇨전용</h2>
+		<h4>현재 등록되어 있는 내용</h4>
+		<ul class="list-group" id="ponyoBefore">
+		</ul>
+		<h4>새로 등록할 내용</h4>
+		<div>
+			카테고리 제목<input type="text" id ="title" class="form-control"/>
+			coment<input type="text" id ="coment" class="form-control"/>
+			hidden coment<input type="text" id ="hidden" class="form-control"/>
+			<button onclick="update();">update!!</button>
+		</div>
+	</div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="ponyoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">포뇨 PK</h5>
+		</div>
+		<div class="modal-body">
+		  <label class="form-control">
+			포뇨 전용 비밀번호
+			* read only *
+		  </label>
+		  <input type="password" id ="pass" class="form-control">
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" onclick="history.back();">닫기</button> 
+		  <button type="button" class="btn btn-primary" onclick="getPonyo()">전송</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script src="js/ponyo.js"></script>
+
+</body>
+</html>

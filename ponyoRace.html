@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/ponyoRace.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading" >Ponyo Race</h1>
+				<p class="intro-text">
+					Welcome
+				</p>
+				<a href="#ponyoRace" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Page Sample Section -->
+<section id="ponyoRace">
+	<div class="container content-section">
+		<h1>뽀뇨의 경주</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>경주할 뽀뇨의 수를 자유롭게 추가해 보세요</h4>
+				<h4>뽀뇨의 이름을 지정 할 수 있습니다.</h4>
+				<h4>뽀뇨의 최대 입력 대수는 30대 입니다.</h4>
+				<h4>바다의 최대 길이는 100 입니다.</h4>
+			</div>
+			<div class="col-md-6">
+				<img src="./img/race/main.png">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="trackLength"><strong>바다의 길이</strong></label>
+				<input id="trackLength" type='number' onchange="countPonyo();" class="form-control" value="10"/>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<label for="raceSpeed"><strong>속도</strong></label>
+				<select class="form-control d-flex w-75" id="raceSpeed">
+					<option value="100">빠르게</option>
+					<option value="400">중간</option>
+					<option value="800">느리게</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<strong>뽀뇨 추가</strong>
+				<button class="btn btn-primary" onclick="changeLabel('add')">+</button>
+				<button class="btn btn-danger"  onclick="changeLabel('remove')">-</button>
+				<strong>경기 인원</strong>
+				<input type="number" id="inputPonyoCnt"  value="1" readonly/>
+			</div>
+		</div>
+		<br>
+		<row>
+		<div id="ponyoNameContainer">
+
+		</div>
+		</row>
+		<div class="row">
+			<div class="col-12 text-center p-3" id="racing" >
+				<video muted autoplay loop class="racing">
+					<source src="./img/race/move.mp4" type="video/mp4"  >
+				</video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 text-center p-3">
+				<button onclick="startRace();" class="btn btn-primary">경주시작</button>
+				<button onclick="reset();" id="reset" class="btn btn-danger" >리셋</button>
+			</div>
+		</div>
+
+		<div id="trackContainer" class="track-container">
+		</div>
+
+
+		<div id="finshBox">
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script src="./js/ponyoRace.js"></script>
+
+</body>
+</html>

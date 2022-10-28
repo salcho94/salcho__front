@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+	<div class="intro-body">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<h1 class="brand-heading">SALCHO</h1>
+					<p class="intro-text">
+						이 사이트는
+						<strong>oracleCloud</strong> 기반으로 <strong>docker & mysql  & apache2 </strong> 설치 <br>
+						<strong>domain</strong> 연결 및 <strong>ssl</strong> 적용이 완료되어 있습니다.
+						<br>
+						<br>
+						<strong>
+						front : html / bootstrap / javaScript / jQuery <br>
+						back : node.js / express.js /nodemon
+						</strong>
+					</p>
+					<a href="#about" class="btn btn-circle page-scroll">
+						<i class="fa fa-angle-double-down animated"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<!-- About Section -->
+<section>
+
+</section>
+<section id="about">
+	<div class="container content-section text-center">
+		<div class="row">
+			<h2>Preferences</h2>
+			<div class="col-lg-8 col-lg-offset-2">
+				<ul class="list-group">
+					<li class="list-group-item text-left"><strong>공정경쟁 지원 시스템 - 개발</strong></li>
+					<li class="list-group-item text-left"><strong>콘텐츠분쟁조정위원회 - 기능개선 및 유지보수</strong></li>
+					<li class="list-group-item text-left"><strong>국립국어원 한국어 교원자격 - 고도화 및 리뉴얼 진행</strong></li>
+					<li class="list-group-item text-left"><strong>신기한 나라 Live - 프론트단 개발 및 수정</strong></li>
+					<li class="list-group-item text-left"><strong>한솔 관리자 - 부분개발</strong></li>
+					<li class="list-group-item text-left"><strong>AltiCast - VOC 응대 및 부분개발</strong></li>
+				</ul>
+				<p class="text-left text-danger">
+					보유기술 <strong><span id="historyTime"></span></strong> <br>
+					Java,Jquery,JavaScript,Spring,MyBatis,<br>
+					Jsp,Mysql,Html,Css,Jstl,Node,OraCle,SpringBoot<br>
+					TypeScirpt,Express,BootStrap
+				</p>
+				<!--<ul class="list-inline banner-social-buttons">
+					<li>
+						<a href="./introduce/introduce.docx" class="btn btnghost btn-lg" download=""><i
+								class="fas fa-send"></i>이력서 다운로드</a>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p></p>
+				<strong>만약 저에게 궁금하신 점이 있으시다면 메일을 남겨주세요!</strong>
+				<ul class="list-inline banner-social-buttons">
+					<li>
+						<a href="./sendMail.html" class="btn btnghost btn-lg"><i class="fas fa-send"></i> Send Mail</a>
+					</li>
+					<li>
+						<a href="https://github.com/salcho94" target="_blank" class="btn btnghost btn-lg"><i class="fas fa-github"></i><span class="network-name">gitHub</span></a>
+					</li>
+					<li>
+						<a href="https://www.instagram.com/accounts/login/?next=/salcho1994/" target="_blank" class="btn btnghost btn-lg"><i class="fas fa-instagram"></i><span class="network-name">instagram</span></a>
+					</li>
+					<li>
+						<a href="https://salcho94.github.io/" target="_blank" class="btn btnghost btn-lg"><i class="fas fa-instagram"></i><span class="network-name">blog
+						</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h2 class="text-center">live Chat</h2>
+	<div id="liveChat" >
+		<!--<iframe src="http://localhost:3000"></iframe>-->
+		<iframe src="http://144.24.143.203:7777"></iframe>
+	</div>
+</section>
+<section id="visit">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 text-center">
+				<h2>VISIT COUNT</h2>
+				<div class="row">
+					<div class="col-lg-6"><h2>TODAY</h2></div>
+					<div class="col-lg-6"><h2>TOTAL</h2></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6"><h2 id="todayCount">0</h2></div>
+					<div class="col-lg-6"><h2 id="totalCount">0</h2></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="time">
+	<div class="container content-section text-center">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>NOW TIME</h2>
+				<h2  id="clock" style="color:black;"></h2>
+
+			</div>
+		</div>
+	</div>
+</section>
+<form method="post" class="gform"  id="areaSendForm" style="display: none">
+	<div class="form">
+		<input type="text" name="country" id="country" >
+		<input type="text" name="address" id="address" >
+		<input type="text" name="ipAddress" id="ipAddress" >
+	</div>
+</form>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script>
+	let Target = document.getElementById("clock");
+	let historyTime = document.getElementById("historyTime");
+	function clock() {
+
+		let time = new Date();
+
+		let year = time.getFullYear();
+		let month = time.getMonth();
+		let date = time.getDate();
+		let day = time.getDay();
+		let week = ['일', '월', '화', '수', '목', '금', '토'];
+		//경력 일 수 계산 로직
+		let startDate = '2020-11-16';
+		let nowDate = `${year}-${month}-${date}`;
+		let date1 = new Date(startDate);
+		let date2 = new Date(nowDate);
+		let historyDate = date1.getTime() - date2.getTime();
+		let resultTime = Math.abs(historyDate / (1000 * 60 * 60 * 24));
+
+		let hours = time.getHours();
+		let minutes = time.getMinutes();
+		let seconds = time.getSeconds();
+
+		Target.innerText =
+				`${year}년 ${month + 1}월 ${date}일 ${week[day]}요일 ` +
+				`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+
+		historyTime.innerText = `(경력 : ${Math.floor(resultTime)} 일)`
+
+
+	}
+	clock();
+	setInterval(clock, 1000); // 1초마다 실행
+
+	async function sendMail(ip,area){
+		if(ip != null && area != null){
+			$('#country').val(area[0]);
+			$('#address').val(area[1] +"  "+area[2]);
+			$('#ipAddress').val(ip);
+			let form = $('#areaSendForm').serialize();
+			console.log(form);
+			axios.post(`https://script.google.com/macros/s/AKfycbxnUddp2p0467_DwYu65HswMGS2oFC1qsBCPs5Uyg/exec`,form);
+		}
+	}
+
+	async function getVisit() {
+		const visit = await axios({
+			method: 'get',
+			url: url + '/visit',
+			headers: {},
+			data: {}
+		});
+		const todayWrite =  document.getElementById('todayCount');
+		const totalWrite = document.getElementById('totalCount');
+		const ip = visit.data.result.ip;
+		const area = visit.data.result.area;
+
+
+
+		(ip != '' ? sendMail(ip,area) : console.log('중복'));
+		todayWrite.innerHTML = `${visit.data.result.today}`;
+		totalWrite.innerHTML = `${visit.data.result.total}`;
+		console.log("ipAndArea",visit.data.result);
+	}
+	getVisit();
+</script>
+</body>
+</html>

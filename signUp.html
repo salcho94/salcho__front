@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading">sign-Up</h1>
+				<p class="intro-text">
+					Welcome to my site
+				</p>
+				<a href="#signUp" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Page Sample Section -->
+<section id="signUp">
+	<div class="container">
+		<div class="py-5 text-center">
+			<img class="d-block mx-auto mb-4" src="./img/logo.png" alt="" width="72" height="72">
+			<h2>회원가입</h2>
+			<p class="lead"><h4>내 동료가 되라</h4></p>
+		</div>
+
+		<div class="col-md-12 order-md-1">
+			</form>
+				<div class="mb-3">
+					<label for="userId">아이디 (username)</label>
+						<input type="text" class="form-control" id="userId" placeholder="Username" required name="user-id">
+					<p><br></p>
+				</div>
+
+				<div class="mb-3">
+					<label for="plainPassword">비밀번호(password)</label>
+					<input type="password" class="form-control" id="plainPassword" placeholder="Password" value="" required name="user-password">
+					<p><br></p>
+				</div>
+
+				<div class="mb-3">
+					<label for="nickname">애칭</label>
+					<input type="text" class="form-control" id="nickname" placeholder="별명을 입력해 주세요" value="" required name="user-real-name">
+					<p><br></p>
+				</div>
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit" id="signup">동의한다</button>
+				<hr class="mb-4">
+			</form>
+		</div>
+
+	</div>
+</section>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script src="./js/signUp.js"></script>
+</body>
+</html>

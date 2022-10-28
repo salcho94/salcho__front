@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SALCHO</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="font-awesome/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<style>
+	.ck-editor__editable { height: 400px; }
+</style>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Header -->
+<div data-include-path="./layout/header.html"></div>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading">Board View</h1>
+				<p class="intro-text">
+					게시글 상세
+				</p>
+				<a href="#board" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+<!-- Page Sample Section -->
+<section id="board">
+	<div class="container content-section text-left">
+		<div class="row">
+			<h2 class="text-center">상세보기</h2>
+				<label class="label-warning lg pull-right" id ="boardCount">조회수 : 0</label>
+				<label for="title" class="mb-2">제목</label>
+				<input type="text" id="title" class="form-control mb-2"  readonly="readonly">
+				<label for="writer" class="mb-2">작성자</label>
+				<input type="text" id="writer" class="form-control mb-2"  readonly="readonly">
+				<label for="writer" class="mb-2">작성일</label>
+				<input type="text" id="insertDt" class="form-control mb-2"  readonly="readonly">
+				<label for="writer" class="mb-2">내용</label>
+				<div class="form-group">
+					<div  class="form-control mb-2"  id="content" style="width: auto; height: 400px; overflow: scroll"
+						  readonly></div>
+				</div>
+			<!--	<button type="submit" class="btn btn-warning pull-right">글수정</button>-->
+				<a href="./board.html" class="btn btn-info pull-right" >목록</a>
+		</div>
+	</div>
+
+	</div>
+</div>
+</section>
+<!-- Footer -->
+<div data-include-path="./layout/footer.html"></div>
+<script src="./js/url.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- component -->
+<script src="./js/component.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="./js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="./js/jquery.easing.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="./js/theme.js"></script>
+<script src="./js/board.js"></script>
+<script>
+	function setCookie(id, title) {
+		document.cookie = id + '=' +  title ;
+	}
+
+	function getCookie(id) {
+		let value = document.cookie.match('(^|;) ?' + id + '=([^;]*)(;|$)');
+		return value? value[2] : null;
+	}
+
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		let regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+	async function getView() {
+		let boardId = getParameterByName('boardId');
+		let secret = getParameterByName('secret');
+		let boardCount;
+		if(!getCookie(boardId)){
+			boardCount = 'Y';
+		}else{
+			boardCount = 'N';
+		}
+		if(secret == 'N'){
+			const nomalSet = await axios({
+				method : "get", // http method
+				url    : url + `/board/view?boardIdx=${boardId}&secret=${secret}&boardCount=${boardCount}`,
+				headers: {}, // packet header
+				data   : {}, // packet body
+			});
+
+			document.getElementById('boardCount').innerHTML =   "조회수 : " + nomalSet.data.result[0][0].board_count;
+			document.getElementById('title').value =  nomalSet.data.result[0][0].title
+			document.getElementById('writer').value =  nomalSet.data.result[0][0].writer
+			document.getElementById('insertDt').value =  nomalSet.data.result[0][0].insert_dt.substr(0, 10)
+			$('#content').html(nomalSet.data.result[0][0].content)
+			setCookie(boardId ,nomalSet.data.result[0][0].title);
+		}else{
+			let pass = prompt("비밀글 입니다 비밀번호를 입력해 주세요!");
+			if(pass){
+				const passSet = await axios({
+					method : "get", // http method
+					url    : url + `/board/view?boardIdx=${boardId}&secret=${secret}&pass=${pass}&boardCount=${boardCount}`,
+					headers: {}, // packet header
+					data   : {}, // packet body
+				});
+				if(passSet.data.result[0][0]){
+					document.getElementById('boardCount').innerHTML =  "조회수 : " + passSet.data.result[0][0].board_count;
+					document.getElementById('title').value =  passSet.data.result[0][0].title
+					document.getElementById('writer').value =  passSet.data.result[0][0].writer
+					document.getElementById('insertDt').value =  passSet.data.result[0][0].insert_dt.substr(0, 10)
+					$('#content').html(passSet.data.result[0][0].content)
+					setCookie(boardId ,passSet.data.result[0][0].title);
+				}else{
+					alert('비밀번호가 다릅니다.!!')
+					window.history.back();
+				}
+			}else{
+				alert("비밀번호를 입력해 주세요 ");
+				window.history.back();
+			}
+		}
+
+	}
+	getView();
+</script>
+</body>
+</html>
